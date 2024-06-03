@@ -61,6 +61,9 @@ class PeminjamanController extends Controller
     {
         $buku = DetailPeminjaman::where('peminjaman_id', $peminjaman->id)->with('buku')->get();
         $peminjaman->load('user');
+        $peminjaman->load('admin');
+
+
 
         return inertia(
             'Peminjaman/Detail',
@@ -70,14 +73,13 @@ class PeminjamanController extends Controller
 
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        $tanggal_ambil = date('Y-m-d', strtotime($request->tanggal_ambil));
-        $tanggal_kembali = date('Y-m-d', strtotime($request->tanggal_kembali));
         $peminjaman->update([
-
-            'tanggal_ambil' => $tanggal_ambil,
-            'tanggal_kembali' => $tanggal_kembali,
+            'admin_id' => auth()->user()->id,
+            'tanggal_ambil' => $request->tanggal_ambil,
+            'tanggal_kembali' => $request->tanggal_kembali,
             'status' => $request->status,
         ]);
+
 
         return redirect()->route('peminjaman.list');
     }

@@ -14,6 +14,9 @@ class Peminjaman extends Model
         'status',
         'tanggal_pinjam',
         'tanggal_wajib_kembali',
+        'tanggal_ambil',
+        'tanggal_kembali',
+        'admin_id',
     ];
 
     public function detail_peminjaman()
@@ -22,6 +25,11 @@ class Peminjaman extends Model
     }
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function admin()
     {
         return $this->belongsTo(User::class);
     }

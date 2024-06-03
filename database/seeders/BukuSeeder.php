@@ -13,7 +13,6 @@ class BukuSeeder extends Seeder
      */
     public function run(): void
     {
-        // foreach 10 bukus
         for ($i = 1; $i <= 10; $i++) {
             // insert data buku
             DB::table('bukus')->insert([

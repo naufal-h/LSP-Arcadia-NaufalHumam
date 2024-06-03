@@ -248,7 +248,12 @@ export default function Dashboard({ auth, peminjaman, buku }) {
                                         <TextInput
                                             id="size"
                                             className="mt-1 block w-full"
-                                            value=""
+                                            // if peminjaman.admin is null, return empty string
+                                            value={
+                                                peminjaman.admin != null
+                                                    ? peminjaman.admin.nama
+                                                    : ""
+                                            }
                                             disabled
                                         />
                                     </div>
@@ -278,7 +283,13 @@ export default function Dashboard({ auth, peminjaman, buku }) {
                                         <TextInput
                                             id="tanggal_ambil"
                                             className="mt-1 block w-full"
-                                            value=""
+                                            value={
+                                                peminjaman.tanggal_ambil
+                                                    ? new Date(
+                                                          peminjaman.tanggal_ambil
+                                                      ).toLocaleString()
+                                                    : ""
+                                            }
                                             disabled
                                         />
                                     </div>
@@ -314,7 +325,13 @@ export default function Dashboard({ auth, peminjaman, buku }) {
                                         <TextInput
                                             id="tanggal_kembali"
                                             className="mt-1 block w-full"
-                                            value=""
+                                            value={
+                                                peminjaman.tanggal_kembali
+                                                    ? new Date(
+                                                          peminjaman.tanggal_kembali
+                                                      ).toLocaleString()
+                                                    : ""
+                                            }
                                             disabled
                                         />
                                     </div>
